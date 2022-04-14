@@ -1,8 +1,3 @@
-variable "codedeploy_deployment_group_name" {
-  description = "Name of this service's deployment group."
-  type        = string
-}
-
 variable "cp_resource_bucket_arn" {
   type        = string
   description = "ARN of the S3 bucket where the source artifacts will be kept."
