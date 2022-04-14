@@ -1,0 +1,51 @@
+version: ""
+
+formatter: markdown table
+
+name: terraform-aws-multiaccount-application-pipeline
+
+content: |-
+  # terraform-aws-multiaccount-application-pipeline
+
+  This module creates a CodePipeline which accepts multiple sources, including a central ECR and one or more S3 artifacts. When triggered, the Pipeline will trigger the deployment of the new application container as well as related taskdef/appspec for the given application revision.
+
+  This module is intended to be used in a single-region, multi-account paradigm, where each environment (e.g. DEV, QA, PRD) belongs to a separate AWS account and the workloads/applications are deployed to the same region.
+  
+  ## Example Config:
+
+  ```hcl
+  {{ include "examples/basic.tf" }}
+  ```
+
+  ---
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  ---
+
+  ## Contributors
+  - Chris Hurst [GenesisChris](https://github.com/GenesisChris)
+  - Chris Childress [chrischildresssg](https://github.com/chrischildresssg)
+
+  Note, manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+
+sections:
+  show:
+    - resources
+    - inputs
+    - outputs
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  color: true
+
+output:
+  file: README.md
+  mode: replace
