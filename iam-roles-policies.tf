@@ -106,13 +106,13 @@ data "aws_iam_policy_document" "codepipeline_artifact_bucket_policy" {
 resource "aws_iam_role_policy" "codepipeline_policy" {
   count  = var.create ? 1 : 0
   name   = "${var.name}-codepipeline-policy"
-  role   = join("", aws_iam_role.codepipeline_role.*.id)
+  role   = join("", aws_iam_role.codepipeline_role[*].id)
   policy = data.aws_iam_policy_document.codepipeline_artifact_bucket_policy.json
 }
 
 resource "aws_iam_role_policy" "codepipeline_policy_account_assume" {
   count  = var.create ? 1 : 0
   name   = "${var.name}-codepipeline-account-assume-policy"
-  role   = join("", aws_iam_role.codepipeline_role.*.id)
+  role   = join("", aws_iam_role.codepipeline_role[*].id)
   policy = data.aws_iam_policy_document.codepipeline_workload_assume_policy.json
 }
