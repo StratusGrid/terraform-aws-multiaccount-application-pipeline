@@ -5,7 +5,7 @@
 resource "aws_codepipeline" "codepipeline_application" {
   count    = var.create ? 1 : 0
   name     = "${var.name}-pipeline"
-  role_arn = join("", aws_iam_role.codepipeline_role.*.arn)
+  role_arn = join("", aws_iam_role.codepipeline_role[*].arn)
 
   artifact_store {
     location = one(distinct(flatten([for account in var.workload_accounts : [for service in account["service_map"] : service.artifact_bucket]])))

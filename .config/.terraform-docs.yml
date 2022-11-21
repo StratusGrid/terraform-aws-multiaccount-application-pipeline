@@ -1,0 +1,68 @@
+version: ""
+
+formatter: markdown table
+
+name: terraform-aws-multiaccount-application-pipeline
+
+content: |-
+  # terraform-aws-multiaccount-application-pipeline
+  GitHub: [StratusGrid/terraform-aws-multiaccount-application-pipeline](https://github.com/StratusGrid/terraform-aws-multiaccount-application-pipeline)
+
+  This terraform module creates a multi-account Fargate application deployment pipeline.
+
+  ## Example
+  ```hcl
+  {{ include "examples/example1.tfnot" }}
+  ```
+  ## StratusGrid Standards we assume
+  - All resource names and name tags shall use `_` and not `-`s
+  - The old naming standard for common files such as inputs, outputs, providers, etc was to prefix them with a `-`, this is no longer true as it's not POSIX compliant. Our pre-commit hooks will fail with this old standard.
+  - StratusGrid generally follows the TerraForm standards outlined [here](https://www.terraform-best-practices.com/naming)
+  ## Repo Knowledge
+  Repository for Module vmimport
+  ## Documentation
+  This repo is self documenting via Terraform Docs, please see the note at the bottom.
+  ### `LICENSE`
+  This is the standard Apache 2.0 License as defined [here](https://stratusgrid.atlassian.net/wiki/spaces/TK/pages/2121728017/StratusGrid+Terraform+Module+Requirements).
+  ### `outputs.tf`
+  The StratusGrid standard for Terraform Outputs.
+  ### `README.md`
+  It's this file! I'm always updated via TF Docs!
+  ### `tags.tf`
+  The StratusGrid standard for provider/module level tagging. This file contains logic to always merge the repo URL.
+  ### `variables.tf`
+  All variables related to this repo for all facets.
+  One day this should be broken up into each file, maybe maybe not.
+  ### `versions.tf`
+  This file contains the required providers and their versions. Providers need to be specified otherwise provider overrides can not be done.
+  ## Documentation of Misc Config Files
+  This section is supposed to outline what the misc configuration files do and what is there purpose
+  ### `.config/.terraform-docs.yml`
+  This file auto generates your `README.md` file.
+  ### `.github/workflows/pre-commit.yml`
+  This file contains the instructions for Github workflows, in specific this file run pre-commit and will allow the PR to pass or fail. This is a safety check and extras for if pre-commit isn't run locally.
+  ### `examples/*`
+  The files in here are used by `.config/terraform-docs.yml` for generating the `README.md`. All files must end in `.tfnot` so Terraform validate doesn't trip on them since they're purely example files.
+  ### `.gitignore`
+  This is your gitignore, and contains a slew of default standards.
+  ---
+  {{ .Requirements }}
+  {{ .Resources }}
+  {{ .Inputs }}
+  {{ .Outputs }}
+  ---
+  Note, manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml`
+sections:
+  show:
+    - requirements
+    - resources
+    - inputs
+    - outputs
+
+sort:
+  enabled: true
+  by: name
+
+output:
+  file: README.md
+  mode: replace
